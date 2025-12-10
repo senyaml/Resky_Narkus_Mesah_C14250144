@@ -22,9 +22,9 @@ Engine*.
 
   Node                 Fungsi
   -------------------- ---------------------------------------------
-  **CSV Reader**       Membaca dataset ToyotaCorolla.csv
-  **Column Filter**    Memilih kolom *Price*, *Mfg_Year*, dan *KM*
-  **Column Renamer**   Menstandarkan / merapikan nama kolom
+  *CSV Reader*      Membaca dataset ToyotaCorolla.csv
+  *Column Filter*   Memilih kolom *Price*, *Mfg_Year*, dan *KM*
+  *Column Renamer*  Menstandarkan / merapikan nama kolom
 
 ### 🔧 *Hasil Tahap Preparation*
 
