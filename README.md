@@ -23,7 +23,7 @@ Workflow terbagi menjadi **tiga tahap besar**:
 
 ---
 
-## 1️⃣ Preprocessing Data
+## 1️⃣ Preparation Data
 | Node | Fungsi |
 |------|--------|
 | **CSV Reader** | Memuat data mentah dari dataset. |
@@ -33,7 +33,7 @@ Workflow terbagi menjadi **tiga tahap besar**:
 
 ---
 
-## 2️⃣ Feature Engineering & Agregasi
+## 2️⃣ Preprocessing Data
 | Node | Fungsi |
 |------|--------|
 | **GroupBy (banyak node)** | Menghitung rata-rata, jumlah, atau agregasi lainnya berdasarkan kategori (contoh: Fuel_Type, Age). |
@@ -55,7 +55,6 @@ Workflow terbagi menjadi **tiga tahap besar**:
 
 ### ⭐ Insight Utama
 - **Harga mobil menurun seiring bertambahnya usia mobil.**
-- **Fuel Type** dan **Jumlah Pintu** memberikan pengaruh nyata terhadap variasi harga.
 - Distribusi harga menunjukkan mayoritas mobil berada pada kategori **Sedang** dan **Murah**.
 
 ### 🧠 Interpretasi
