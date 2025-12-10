@@ -1,91 +1,136 @@
-# Proyek Analisis Data Toyota Corolla (DAE)
+# 🚗 **Proyek Analisis Data Toyota Corolla -- KNIME Workflow**
 
-## 📌 Informasi Proyek
-**Nama Proyek:** Analisis Data Eksploratif Toyota Corolla  
-**Disusun oleh:** *C14250144*  
-**Dataset:** `ToyotaCorolla.csv`  
-**Platform:** KNIME
+**Oleh: C14250144**\
+**Dataset:** *ToyotaCorolla.csv*\
+**Workflow:** *Projek_DAE_UAS_Toyota.knwf*
 
----
+------------------------------------------------------------------------
 
-## 📊 Tujuan Proyek
-Proyek ini bertujuan melakukan:
-- Exploratory Data Analysis (EDA)
-- Preprocessing data
-- Feature engineering dan agregasi
-- Visualisasi data  
-pada dataset **Toyota Corolla**, untuk menemukan pola harga, faktor yang mempengaruhi harga, serta tren penting lainnya.
+## 📌 **Overview Proyek**
 
----
+Proyek ini melakukan *Data Preparation*, *Preprocessing*, *Feature
+Engineering*, *Agregasi*, serta *Visualisasi* menggunakan **KNIME**.\
+Fokus utama proyek ini adalah menganalisis hubungan **KM, Harga,
+Tahun**, serta membuat kategori berdasarkan **KM** melalui *Rule
+Engine*.
 
-## ⚙️ Alur Kerja (Workflow) – *KNIME*
-Workflow terbagi menjadi **tiga tahap besar**:
+------------------------------------------------------------------------
 
----
+# 🧱 **1. Data Preparation**
 
-## 1️⃣ Preparation Data
-| Node | Fungsi |
-|------|--------|
-| **CSV Reader** | Memuat data mentah dari dataset. |
-| **Column Filter** | Memilih kolom penting untuk analisis. |
-| **Row Filter** | Menyaring data sesuai kriteria tertentu. |
-| **String to Number / Number to String** | Menjamin tipe data sesuai kebutuhan analisis. |
+### 🔶 *Node yang digunakan*
 
----
+  Node                 Fungsi
+  -------------------- ---------------------------------------------
+  **CSV Reader**       Membaca dataset ToyotaCorolla.csv
+  **Column Filter**    Memilih kolom *Price*, *Mfg_Year*, dan *KM*
+  **Column Renamer**   Menstandarkan / merapikan nama kolom
 
-## 2️⃣ Preprocessing Data
-| Node | Fungsi |
-|------|--------|
-| **GroupBy (banyak node)** | Menghitung rata-rata, jumlah, atau agregasi lainnya berdasarkan kategori (contoh: Fuel_Type, Age). |
-| **Rule Engine** | Membuat kategori baru (contoh: kategori Harga, kategori KM). |
-| **Column Renamer** | Memberi nama baru pada kolom hasil agregasi untuk memudahkan analisis. |
+### 🔧 *Hasil Tahap Preparation*
 
----
+✔ Dataset bersih\
+✔ Kolom telah difilter sesuai kebutuhan\
+✔ Nama kolom sudah rapi dan seragam
 
-## 3️⃣ Visualisasi Data (EDA)
-| Visualisasi | Fungsi |
-|------------|--------|
-| **Line Plot** | Menampilkan tren harga rata-rata berdasarkan tahun produksi. |
-| **Bar Chart** | Membandingkan harga rata-rata antar kategori (Fuel Type, Doors, dan lainnya). |
-| **Pie Chart** | Menunjukkan proporsi kategori baru dari Rule Engine (contoh: kategori harga). |
+------------------------------------------------------------------------
 
----
+# 🛠 **2. Preprocessing**
 
-## 🔍 Hasil Analisis & Insight
+Pada tahap ini dilakukan filtering berdasarkan tahun tertentu serta
+pembuatan fitur kategori menggunakan **Rule Engine**.
 
-### ⭐ Insight Utama
-- **Harga mobil menurun seiring bertambahnya usia mobil.**
-- Distribusi harga menunjukkan mayoritas mobil berada pada kategori **Sedang** dan **Murah**.
+### 🔶 *Row Filter*
 
-### 🧠 Interpretasi
-- Proses EDA berhasil mengubah data mentah menjadi insight yang jelas.
-- Rule Engine membantu menyederhanakan variabel harga menjadi kategori yang mudah dipahami.
-- Tahun produksi adalah prediktor harga paling kuat, namun variabel KM dan spesifikasi juga berpengaruh.
+-   **Tahun 2004**
+-   **Tahun 2002**
 
----
+### 🔶 *Rule Engine (kategori KM)*
 
-## ✔️ Kesimpulan
-Analisis menunjukkan bahwa:
-- Harga Toyota Corolla sangat dipengaruhi oleh **Tahun Produksi**, **KM**, dan beberapa variabel kategoris.
-- Workflow KNIME yang dibuat sudah lengkap dan mampu menghasilkan insight yang akurat.
-- Dataset cocok dijadikan dasar untuk modeling lanjutan seperti **regresi harga** atau **klasifikasi kategori harga**.
+Aturan kategori KM:
 
----
+    $KM$ <= 20000 => "rendah"
+    $KM$ <= 99000 => "tinggi"
+    TRUE => "medium"
 
-## 📁 Struktur Repository
-```
-├── README.md
-├── ToyotaCorolla.csv
-└── Projek_UAS_Toyota.knwf
-```
+📝 *Node ini menghasilkan kolom baru bernama* **kategori_km**
 
----
+------------------------------------------------------------------------
 
-## 🏁 Catatan Akhir
-Jika ingin menambahkan:
-- gambar workflow,
-- badge GitHub,
-- tema warna markdown,
-- atau versi PDF,
+# 📊 **3. Agregasi (GroupBy)**
 
-tinggal bilang saja!
+### 🔶 *GroupBy 1 -- Rata-rata Harga Tahun 2004*
+
+Menghasilkan: - Average Price - Distribusi untuk visualisasi Pie Chart &
+Line Plot
+
+### 🔶 *GroupBy 2 -- Rata-rata Harga per Tahun*
+
+Untuk visualisasi tren harga:
+
+-   Line Plot (Harga vs Tahun)
+-   Bar Chart (Rata-rata Harga)
+
+### 🔶 *GroupBy 3 -- Rata-rata Harga berdasarkan kategori KM*
+
+Digunakan untuk: - Bar Chart (Average KM Category) - Line Plot - Pie
+Chart (Distribusi harga kategori)
+
+------------------------------------------------------------------------
+
+# 📈 **4. Visualisasi**
+
+Visualisasi dilakukan untuk memahami pola & tren data.
+
+### 🎯 *Node Visualisasi*
+
+  Visual          Fungsi
+  --------------- ----------------------------------------------
+  **Line Plot**   Tren rata-rata harga & KM
+  **Bar Chart**   Membandingkan nilai rata-rata antar kategori
+  **Pie Chart**   Proporsi kategori tahun atau kategori KM
+
+### ✨ *Insight Visualisasi*
+
+-   Tahun produksi lebih muda → harga lebih tinggi\
+-   KM rendah → harga lebih mahal\
+-   Kategori KM *rendah / medium / tinggi* menunjukkan pola distribusi
+    yang jelas
+
+------------------------------------------------------------------------
+
+# 🧩 **5. Insight & Interpretasi**
+
+### 🔍 *Temuan*
+
+-   KM memiliki pengaruh kuat terhadap harga jual.
+-   Tahun produksi berbanding lurus dengan harga.
+-   Perbedaan kategori KM terlihat jelas pada visualisasi (harga menurun
+    seiring meningkatnya KM).
+
+### 💡 *Interpretasi*
+
+Workflow sukses mengubah data mentah menjadi insight visual yang mudah
+dipahami.\
+Kategori KM dari *Rule Engine* sangat membantu segmentasi kendaraan
+berdasarkan tingkat pemakaian.
+
+------------------------------------------------------------------------
+
+# 🏁 **6. Kesimpulan**
+
+-   Proyek KNIME berhasil melakukan *Preparation → Preprocessing →
+    Agregasi → Visualisasi* secara lengkap.
+-   Aturan kategori KM sudah benar dan mencerminkan kondisi sebenarnya.
+-   Workflow dapat dikembangkan menjadi model prediksi harga atau
+    klasifikasi tingkat KM di masa depan.
+
+------------------------------------------------------------------------
+
+# 📦 **Download Workflow**
+
+Jika diperlukan, workflow KNIME dapat ditambahkan ke repo GitHub.
+
+------------------------------------------------------------------------
+
+💬 *Jika mau ditambah logo, warna-warna GitHub, atau tabel yang lebih
+rich, tinggal bilang!*
