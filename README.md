@@ -2,7 +2,7 @@
 
 **Oleh: C14250144**\
 **Dataset:** *ToyotaCorolla.csv*\
-**Workflow:** *Projek_DAE_UAS_Toyota.knwf*
+**Workflow:** *Projek_DAE_UAS_C14250144_Toyota.knwf*
 
 ------------------------------------------------------------------------
 
