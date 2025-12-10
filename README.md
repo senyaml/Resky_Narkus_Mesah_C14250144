@@ -128,9 +128,3 @@ berdasarkan tingkat pemakaian.
 
 # 📦 **Download Workflow**
 
-Jika diperlukan, workflow KNIME dapat ditambahkan ke repo GitHub.
-
-------------------------------------------------------------------------
-
-💬 *Jika mau ditambah logo, warna-warna GitHub, atau tabel yang lebih
-rich, tinggal bilang!*
